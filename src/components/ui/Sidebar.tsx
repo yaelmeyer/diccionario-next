@@ -2,10 +2,10 @@ import Link from "next/link";
 import path from "path";
 
 const navItems = [
-    {path: '/aprendidas', Descripcion: 'Aprendidas'},
-    {path: '/pendientes', Descripcion: 'Pendientes'},
-    {path: '/nueva', Descripcion: 'Nueva'},
-    {path: '/todas', Descripcion: 'Todas'},
+    {path: '/palabras/aprendidas', Descripcion: 'Aprendidas'},
+    {path: '/palabras/pendientes', Descripcion: 'Pendientes'},
+    {path: '/palabras/nueva', Descripcion: 'Nueva'},
+    {path: '/palabras/todas', Descripcion: 'Todas'},
 ]
 
 export default function Sidebar() {
