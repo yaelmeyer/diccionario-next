@@ -6,6 +6,7 @@ const navItems = [
     {path: '/palabras/pendientes', Descripcion: 'Pendientes'},
     {path: '/palabras/nueva', Descripcion: 'Nueva'},
     {path: '/palabras/todas', Descripcion: 'Todas'},
+    {path: '/examen/aleatorio', Descripcion: 'Examen Aleatorio'}
 ]
 
 export default function Sidebar() {
