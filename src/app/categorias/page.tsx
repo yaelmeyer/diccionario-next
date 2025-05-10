@@ -23,11 +23,15 @@ const apiURL = 'http://localhost:8080/categorias'
     },[])
   return (
     <div>
+        <div className="flex p-2">
+            <h2 className="p-2 bg-yellow-200">Categorias</h2>
+            <button className="p-2 bg-green-200">Nueva Categoria</button>
+        </div>
         {
             categorias && (
 
                 categorias.map((c, index) =>(
-                    <div key={index}>
+                    <div key={index} className="p-2 bg-green-200 rounded-2xl border">
                         <Categoria descripcion={c.descripcion}/>
                     </div>
                 ))

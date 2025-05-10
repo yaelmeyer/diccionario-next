@@ -5,7 +5,7 @@ interface Categoria {
 
 export default function Categoria({descripcion}: Categoria) {
   return (
-    <div>
+    <div className="text-center text-lg">
       <p>{descripcion}</p>
     </div>
   );
