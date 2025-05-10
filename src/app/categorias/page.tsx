@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import { CategoriaI } from "../interfaces/Categoria";
 import { getCategorias } from "../actions/categoriaService";
 import Categoria from "../components/categoria";
+import FormNuevaCategoria from "./ui/formNuevaCategoria";
+import Modal from "../ui/Modal";
 
 export default function Categorias() {
 const apiURL = 'http://localhost:8080/categorias'
     
     const [categorias, setCategorias] = useState<CategoriaI[]>() 
+    const [showModal, setShowModal] = useState<boolean>(false)
 
     useEffect(()=>{
         const getCategoriasFetch = async() =>{
@@ -25,7 +28,7 @@ const apiURL = 'http://localhost:8080/categorias'
     <div>
         <div className="flex p-2">
             <h2 className="p-2 bg-yellow-200">Categorias</h2>
-            <button className="p-2 bg-green-200">Nueva Categoria</button>
+            <button className="p-2 bg-green-200" onClick={() => setShowModal(true)}>Nueva Categoria</button>
         </div>
         {
             categorias && (
@@ -37,6 +40,10 @@ const apiURL = 'http://localhost:8080/categorias'
                 ))
             )
         }
+
+        <Modal isOpen={showModal} onClose={()=> setShowModal(false)}>
+            <FormNuevaCategoria></FormNuevaCategoria>
+        </Modal>
 
     </div>
   );
