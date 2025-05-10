@@ -30,16 +30,19 @@ const apiURL = 'http://localhost:8080/categorias'
             <h2 className="p-2 bg-yellow-200">Categorias</h2>
             <button className="p-2 bg-green-200" onClick={() => setShowModal(true)}>Nueva Categoria</button>
         </div>
-        {
-            categorias && (
-
-                categorias.map((c, index) =>(
-                    <div key={index} className="p-2 bg-green-200 rounded-2xl border">
-                        <Categoria descripcion={c.descripcion}/>
+            {
+                categorias && (
+                    <div className="grid grid-cols-2 space-x-2 space-y-2">
+                        {
+                            categorias.map((c, index) =>(
+                                <div key={index} className="p-2 bg-green-200 rounded-2xl border hover:cursor-pointer">
+                                    <Categoria descripcion={c.descripcion}/>
+                                </div>
+                            ))
+                        }
                     </div>
-                ))
-            )
-        }
+                )
+            }
 
         <Modal isOpen={showModal} onClose={()=> setShowModal(false)}>
             <FormNuevaCategoria></FormNuevaCategoria>
