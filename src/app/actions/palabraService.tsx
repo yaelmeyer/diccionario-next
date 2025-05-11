@@ -27,3 +27,12 @@ export const getAllPalabras = async() =>{
         console.log("error al obtener todas las palabras: ", error)
     }
 }
+
+export const getPalabrasByCategoria = async(id:number) =>{
+    try {
+        const palabrasObtenidas = await fetch(`${apiURL}?idCategoria=${id}`, {method: 'GET'}).then(resp => resp.json())
+        return palabrasObtenidas
+    } catch (error) {
+        console.log('error al obtener palabras por categoria: ',error)
+    }
+}

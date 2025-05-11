@@ -6,6 +6,7 @@ import FormNuevaPalabra from "./ui/formNuevaPalabra";
 import { PalabraCompletaI, PalabraI } from "../interfaces/Palabra";
 import { getAllPalabras } from "../actions/palabraService";
 import { Loader2 } from "lucide-react";
+import TablaPalabras from "../components/tablaPalabra";
 
 type ColumnsPalabra = {
   espaniol  : string
@@ -32,30 +33,7 @@ export default function NewPalabra() {
       <button className="p-2 bg-red-300 hover:cursor-pointer" onClick={()=> setShowModal(true)}>Nueva Palabra</button>
       {
         palabras && (
-          <div className=" bg-slate-100 border-gray-300 rounded-lg">
-            <table className="">
-              <thead className="bg-slate-300">
-                <tr>
-                  <th className="p-2">Español</th>
-                  <th className="p-2">Ingles</th>
-                  <th className="p-2">Veces Bien</th>
-                  <th className="p-2">Veces Mal</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  palabras.map((palabra, index) =>(
-                    <tr key={index}>
-                      <td className="p-2">{palabra.traduccion}</td>
-                      <td className="p-2">{palabra.idioma}</td>
-                      <td className="p-2">{palabra.vecesBien}</td>
-                      <td className="p-2">{palabra.vecesMal}</td>
-                    </tr>
-                  ))
-                }
-              </tbody>
-            </table>
-          </div>
+          <TablaPalabras palabras={palabras}></TablaPalabras>
         )
       }
       {
