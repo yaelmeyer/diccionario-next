@@ -15,3 +15,15 @@ export const newPalabra = async(palabra: PalabraI) =>{
         console.log('error al crear nueva palabra: ', error)
     }
 }
+
+export const getAllPalabras = async() =>{
+    try {
+        const palabrasLista = await fetch(`${apiURL}/all`,{
+            method: 'GET'
+        }) .then(resp => resp.json())
+
+        return palabrasLista
+    } catch (error) {
+        console.log("error al obtener todas las palabras: ", error)
+    }
+}
