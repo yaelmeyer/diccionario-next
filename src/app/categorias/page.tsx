@@ -5,12 +5,21 @@ import { getCategorias } from "../actions/categoriaService";
 import Categoria from "../components/categoria";
 import FormNuevaCategoria from "./ui/formNuevaCategoria";
 import Modal from "../ui/Modal";
+import { PalabraCompletaI } from "../interfaces/Palabra";
+import TablaPalabras from "../components/tablaPalabra";
+import { getPalabrasByCategoria } from "../actions/palabraService";
 
 export default function Categorias() {
 const apiURL = 'http://localhost:8080/categorias'
     
     const [categorias, setCategorias] = useState<CategoriaI[]>() 
     const [showModal, setShowModal] = useState<boolean>(false)
+    const [palabras, setPalabras] = useState<PalabraCompletaI[]>([])
+
+    const inicializarPalabras = async(id:number) =>{
+        const palabrasObtenidas = await getPalabrasByCategoria(id)
+        setPalabras(palabrasObtenidas)
+    }
 
     useEffect(()=>{
         const getCategoriasFetch = async() =>{
@@ -35,7 +44,9 @@ const apiURL = 'http://localhost:8080/categorias'
                     <div className="grid grid-cols-2 space-x-2 space-y-2">
                         {
                             categorias.map((c, index) =>(
-                                <div key={index} className="p-2 bg-green-200 rounded-2xl border hover:cursor-pointer">
+                                <div    key={index} className="p-2 bg-green-200 rounded-2xl border hover:cursor-pointer"
+                                        onClick={()=>inicializarPalabras(c.id)}
+                                >
                                     <Categoria descripcion={c.descripcion}/>
                                 </div>
                             ))
@@ -43,6 +54,7 @@ const apiURL = 'http://localhost:8080/categorias'
                     </div>
                 )
             }
+            <TablaPalabras palabras={palabras}></TablaPalabras>
 
         <Modal isOpen={showModal} onClose={()=> setShowModal(false)}>
             <FormNuevaCategoria></FormNuevaCategoria>
