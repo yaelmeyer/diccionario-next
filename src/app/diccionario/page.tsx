@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Modal from "../ui/Modal";
 import FormNuevaPalabra from "./ui/formNuevaPalabra";
-import { PalabraI } from "../interfaces/Palabra";
+import { PalabraCompletaI, PalabraI } from "../interfaces/Palabra";
 import { getAllPalabras } from "../actions/palabraService";
 import { Loader2 } from "lucide-react";
 
@@ -14,7 +14,7 @@ type ColumnsPalabra = {
 
 export default function NewPalabra() {
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [palabras, setPalabras] = useState<PalabraI[]>()
+  const [palabras, setPalabras] = useState<PalabraCompletaI[]>()
 
   useEffect(()=>{
     const inicializarPalabras = async() =>{
@@ -38,6 +38,8 @@ export default function NewPalabra() {
                 <tr>
                   <th className="p-2">Español</th>
                   <th className="p-2">Ingles</th>
+                  <th className="p-2">Veces Bien</th>
+                  <th className="p-2">Veces Mal</th>
                 </tr>
               </thead>
               <tbody>
@@ -46,6 +48,8 @@ export default function NewPalabra() {
                     <tr key={index}>
                       <td className="p-2">{palabra.traduccion}</td>
                       <td className="p-2">{palabra.idioma}</td>
+                      <td className="p-2">{palabra.vecesBien}</td>
+                      <td className="p-2">{palabra.vecesMal}</td>
                     </tr>
                   ))
                 }
